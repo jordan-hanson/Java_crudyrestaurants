@@ -68,7 +68,7 @@ public class Restaurant
     private List<Menu> menus = new ArrayList<>();
 //    Go to the Menu Field and add in a Restaurant Type Field  example: private Restaurant restaurant;
 //    You do this so you can do the mappedBy = 'restaurant'
-//    Add in your cascades so if a restarant is deleted the menus aren't floating null in the DB;
+//    Add in your cascades so if a restaurant is deleted the menus aren't floating null in the DB;
 //    So All the menus will be updated.
 //    create the List so your objects in menu can be stored in it.
 //    Then Map it and go to Menu class field to connect it.
