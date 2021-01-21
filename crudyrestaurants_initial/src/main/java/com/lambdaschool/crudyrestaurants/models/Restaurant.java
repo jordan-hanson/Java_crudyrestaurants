@@ -54,15 +54,15 @@ public class Restaurant
     private int seatcapacity;
 
     @ManyToMany()
-    @JoinTable(name = 'restaurantpayments',
-    joinColumns = @JoinColumn(name = 'restaurantid'),
-    inverseJoinColumns = @JoinColumn(name = 'paymentid'))
+    @JoinTable(name = "restaurantpayments",
+    joinColumns = @JoinColumn(name = "restaurantid"),
+    inverseJoinColumns = @JoinColumn(name = "paymentid"))
     private Set<Payment> payments = new HashSet<>();
 //    Set is for uniqueness so you don't have duplicates.
 //    If R1 and P1 process they get a unique key. If they are ran again it will be thrown out
 //    because a unique key was already created for them.
 
-    @OneToMany(mappedBy = 'restaurant',
+    @OneToMany(mappedBy = "restaurant",
     cascade = CascadeType.ALL,
     orphanRemoval = true)
     private List<Menu> menus = new ArrayList<>();
@@ -248,5 +248,21 @@ public class Restaurant
     public void setSeatcapacity(int seatcapacity)
     {
         this.seatcapacity = seatcapacity;
+    }
+
+    public Set<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Set<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 }

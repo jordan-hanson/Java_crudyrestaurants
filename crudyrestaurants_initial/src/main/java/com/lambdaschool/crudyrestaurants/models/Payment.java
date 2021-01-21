@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = 'payments')
+@Table(name = "payments")
 public class Payment {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) long paymentid;
@@ -14,7 +14,7 @@ public class Payment {
     @Column(nullable = false, unique = true)
     private String type;
 
-    @ManyToMany(mappedBy = 'payments')
+    @ManyToMany(mappedBy = "payments")
     private Set<Restaurant> restaurants = new HashSet<>();
 
     public Payment() {
@@ -38,5 +38,13 @@ public class Payment {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Set<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(Set<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 }

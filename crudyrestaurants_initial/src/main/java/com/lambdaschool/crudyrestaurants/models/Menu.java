@@ -15,16 +15,20 @@ public class Menu {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = 'restaurantid', nullable = false)
+    @JoinColumn(name = "restaurantid", nullable = false)
     private Restaurant restaurant;
+
+//    Add into the public Menu(Restaurant restaurant) then declare this.restaurant = restaurant.
+//    Add Getter and Setter so you can add a restaurant to each menu.
 
     public Menu() {
 
     }
 
-    public Menu(String dish, double price) {
+    public Menu(String dish, double price, Restaurant restaurant) {
         this.dish = dish;
         this.price = price;
+        this.restaurant = restaurant;
     }
 
     public long getId() {
@@ -57,6 +61,14 @@ public class Menu {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override
