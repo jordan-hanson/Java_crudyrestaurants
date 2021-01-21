@@ -1,6 +1,10 @@
 package com.lambdaschool.crudyrestaurants.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * The entity allowing interaction with the restaurants table.
@@ -48,6 +52,27 @@ public class Restaurant
      * This was added to specifically show how to update fields that do not have a NULL value.
      */
     private int seatcapacity;
+
+    @ManyToMany()
+    @JoinTable(name = 'restaurantpayments',
+    joinColumns = @JoinColumn(name = 'restaurantid'),
+    inverseJoinColumns = @JoinColumn(name = 'paymentid'))
+    private Set<Payment> payments = new HashSet<>();
+//    Set is for uniqueness so you don't have duplicates.
+//    If R1 and P1 process they get a unique key. If they are ran again it will be thrown out
+//    because a unique key was already created for them.
+
+    @OneToMany(mappedBy = 'restaurant',
+    cascade = CascadeType.ALL,
+    orphanRemoval = true)
+    private List<Menu> menus = new ArrayList<>();
+//    Go to the Menu Field and add in a Restaurant Type Field  example: private Restaurant restaurant;
+//    You do this so you can do the mappedBy = 'restaurant'
+//    Add in your cascades so if a restarant is deleted the menus aren't floating null in the DB;
+//    So All the menus will be updated.
+//    create the List so your objects in menu can be stored in it.
+//    Then Map it and go to Menu class field to connect it.
+
 
     /**
      * Default constructor used primarily by the JPA.
