@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * SeedData puts both known and random data into the database. It implements CommandLineRunner.
  * <p>
- * CoomandLineRunner: Spring Boot automatically runs the run method once and only once
+ * ComandLineRunner: Spring Boot automatically runs the run method once and only once
  * after the application context has been loaded.
  */
 @Transactional
@@ -39,11 +39,12 @@ public class SeedData implements CommandLineRunner
     @Autowired
     private PaymentServices paymentServices;
 
-    /**
-     * A Random generator is needed to randomly generate faker data.
-     */
+//
+//     * A Random generator is needed to randomly generate faker data.
+//     */
 
 //    private Random random = new Random();
+//    test
 
     /**
      * Generates test, seed data for our application
