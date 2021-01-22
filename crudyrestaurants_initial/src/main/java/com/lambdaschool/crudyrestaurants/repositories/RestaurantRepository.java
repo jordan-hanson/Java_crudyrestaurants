@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 
-    List<Restaurant> findByNameContainingIgnoreingCase(String thename)
+    List<Restaurant> findByNameContainingIgnoringCase(String subname);
 }

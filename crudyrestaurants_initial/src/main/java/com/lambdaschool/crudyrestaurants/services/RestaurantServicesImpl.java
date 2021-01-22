@@ -42,7 +42,6 @@ public class RestaurantServicesImpl implements RestaurantServices{
 
     @Override
     public List<Restaurant> findByNameLike(String subname) {
-        List<Restaurant>
-        return restaurantRepository.findByNameLike(subname);
+        return restaurantRepository.findByNameContainingIgnoringCase(subname);
     }
 }

@@ -43,7 +43,7 @@ public class RestaurantController
     @GetMapping(value = "/restaurant/likename/{subname}", produces = "application/json")
     public ResponseEntity<?> findRestaurantByNameLike(@PathVariable String subname){
         List<Restaurant> rtnList = restaurantServices.findByNameLike(subname);
-        return new ResponseEntity<>(rtnList, HttpStatus.OK)
+        return new ResponseEntity<>(rtnList, HttpStatus.OK);
     }
 
     //custom query (sql)
