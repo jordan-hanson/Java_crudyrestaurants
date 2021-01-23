@@ -2,6 +2,7 @@ package com.lambdaschool.crudyrestaurants.controllers;
 
 import com.lambdaschool.crudyrestaurants.models.Restaurant;
 import com.lambdaschool.crudyrestaurants.services.RestaurantServices;
+import com.lambdaschool.crudyrestaurants.views.MenuCounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,8 +49,17 @@ public class RestaurantController
 
     //custom query (sql)
     //http://localhost:2019/restaurants/menucounts
+    @GetMapping(value = "menucounts", produces= "application/json")
+    public ResponseEntity<?> findMenuCounts(){
+        List<MenuCounts> rtnList = restaurantServices.findMenuCounts();
+        return new ResponseEntity<>(rtnList, HttpStatus.OK);
+    }
 
     //find restaurant based off of menu item
     //http://localhost:2019/restaurants/restaurant/likedish/cake
-
+    @GetMapping(value = "/restaurant/likedish/{subdish}", produces = "applicaitons/json")
+    public ResponseEntity<?> findRestaurantByDish(@PathVariable String subdish){
+        List<Restaurant> rtnList = restaurantServices.findRestaurantByDish(subdish);
+                return new ResponseEntity<>(rtnList, HttpStatus.OK);
+    }
 }
