@@ -1,5 +1,7 @@
 package com.lambdaschool.crudyrestaurants.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,6 +59,7 @@ public class Restaurant
     @JoinTable(name = "restaurantpayments",
     joinColumns = @JoinColumn(name = "restaurantid"),
     inverseJoinColumns = @JoinColumn(name = "paymentid"))
+    @JsonIgnoreProperties(value = "restaurants", allowSetters = true)
     private Set<Payment> payments = new HashSet<>();
 //    Set is for uniqueness so you don't have duplicates.
 //    If R1 and P1 process they get a unique key. If they are ran again it will be thrown out
@@ -65,13 +68,15 @@ public class Restaurant
     @OneToMany(mappedBy = "restaurant",
     cascade = CascadeType.ALL,
     orphanRemoval = true)
+    @JsonIgnoreProperties(value = "restaurant", allowSetters = true)
     private List<Menu> menus = new ArrayList<>();
 //    Go to the Menu Field and add in a Restaurant Type Field  example: private Restaurant restaurant;
 //    You do this so you can do the mappedBy = 'restaurant'
-//    Add in your cascades so if a restarant is deleted the menus aren't floating null in the DB;
+//    Add in your cascades so if a restaurant is deleted the menus aren't floating null in the DB;
 //    So All the menus will be updated.
 //    create the List so your objects in menu can be stored in it.
 //    Then Map it and go to Menu class field to connect it.
+//    Add in @JsonIgnoreProperties to ignore printing the extra payment and menu lists for infinite loops
 
 
     /**

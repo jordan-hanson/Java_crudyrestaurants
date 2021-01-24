@@ -2,9 +2,14 @@ package com.lambdaschool.crudyrestaurants.services;
 
 import com.lambdaschool.crudyrestaurants.models.Restaurant;
 import com.lambdaschool.crudyrestaurants.repositories.RestaurantRepository;
+import com.lambdaschool.crudyrestaurants.views.MenuCounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 //if a method is transactional make the whole class transactional
 @Transactional
@@ -21,5 +26,33 @@ public class RestaurantServicesImpl implements RestaurantServices{
     @Override
     public Restaurant save(Restaurant restaurant) {
         return restaurantRepository.save(restaurant);
+    }
+
+    @Override
+    public List<Restaurant> findAllRestaurants() {
+        List<Restaurant> list = new ArrayList<>();
+        restaurantRepository.findAll().iterator().forEachRemaining(list::add);
+        return list;
+    }
+
+    @Override
+    public Restaurant findRestaurantById(long restid) {
+        return restaurantRepository.findById(restid)
+                .orElseThrow(() -> new EntityNotFoundException("Restaurant" + restid + "not Found."));
+    }
+
+    @Override
+    public List<Restaurant> findByNameLike(String subname) {
+        return restaurantRepository.findByNameContainingIgnoringCase(subname);
+    }
+
+    @Override
+    public List<MenuCounts> findMenuCounts() {
+        return restaurantRepository.findMenuCounts();
+    }
+
+    @Override
+    public List<Restaurant> findRestaurantByDish(String subdish) {
+        return restaurantRepository.findByMenus_dishContainingIgnoringCase(subdish);
     }
 }
