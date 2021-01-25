@@ -98,7 +98,7 @@ public class RestaurantController
     @PostMapping(value = "/restaurant", consumes= "application/json", produces = "application/json")
 //        @PostMapping(value = "/restaurant/", consumes= "application/json", produces = "application/json") doesn't work
 //    with my post request it does a header url with restaurant{id} instead of demo /restaurant/id
-    public ResponseEntity<?> replaceRestaurant(@Valid @RequestBody Restaurant newRestaurant){
+    public ResponseEntity<?> newRestaurant(@Valid @RequestBody Restaurant newRestaurant){
         newRestaurant.setRestaurantid(0);
         newRestaurant = restaurantServices.save(newRestaurant);
 //      When you create send back a url for the new CREATED resource with a response header that contains a URl
@@ -110,7 +110,6 @@ public class RestaurantController
                 .path("{restid}")
                 .buildAndExpand(newRestaurant.getRestaurantid())
                 .toUri();
-        responseHeaders.setLocation(newRestaurantURI);
         return new ResponseEntity<>(newRestaurant, responseHeaders, HttpStatus.CREATED);
     }
 
