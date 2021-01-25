@@ -8,15 +8,22 @@ import java.util.List;
 public interface RestaurantServices {
 //    Define all the methods to communicate with the DB;
 //    Then in RestaurantServicesImpl it will return the save
-    Restaurant save(Restaurant restaurant);
 
-    List<Restaurant> findAllRestaurants();
+    List<Restaurant> findAllRestaurants(); //GET
 
-    Restaurant findRestaurantById(long restid);
+    Restaurant findRestaurantById(long restid);//GET
 
-    List<Restaurant> findByNameLike(String subname);
+    List<Restaurant> findByNameLike(String subname);//GET
 
-    List<MenuCounts> findMenuCounts();
+    List<MenuCounts> findMenuCounts();//GET
 
-    List<Restaurant> findRestaurantByDish(String subdish);
+    List<Restaurant> findRestaurantByDish(String subdish);//GET
+
+    Restaurant save(Restaurant restaurant);//POST
+
+    void delete(long id);//DELETE
+
+    Restaurant update(Restaurant restaurant, long id); //PATCH vs PUT (only updating certain fields of a data object)
+
+    void deleteAll(); //DELETE ALL (only for Seed Data not a User to use)
 }
