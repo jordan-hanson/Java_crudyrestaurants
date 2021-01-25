@@ -23,7 +23,7 @@ public interface RestaurantServices {
 
     void delete(long id);//DELETE
 
-    Restaurant update(Restaurant restaurant, long id); //PATCH vs PUT (only updating certain fields of a data object)
+    Restaurant update(Restaurant restaurant, long id); //PATCH vs  REPLACE WITH PUT (only updating certain fields of a data object)
 
     void deleteAll(); //DELETE ALL (only for Seed Data not a User to use)
 }

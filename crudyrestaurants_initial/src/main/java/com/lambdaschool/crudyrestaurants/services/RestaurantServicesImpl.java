@@ -66,6 +66,7 @@ public class RestaurantServicesImpl implements RestaurantServices{
 //        Put and Post both use Save so validate if we are saving new content on an existing object or creating a new one.
 
 
+//        For the developers to validate information being inputed is correct and works.
 //        If it isn't a 0 then it is a put. If it IS a 0 we are doing a post.
         if (restaurant.getRestaurantid() !=0){
 //            Find the id to save the already created restaurant on to PUT.
@@ -103,13 +104,13 @@ public class RestaurantServicesImpl implements RestaurantServices{
 //        Because menus don't exist without a restaurant it is different tehn the payments that are
 //        already in a made table.
         for (Menu m : restaurant.getMenus()){
-//            Menu newMenu = new Menu(){
-//                newMenu.setDish(m.getDish());
-//                newMenu.setPrice(m.setPrice());
-//                newMenu.setRestaurant(newRestaurant);
+            Menu newMenu = new Menu();
+                newMenu.setDish(m.getDish());
+                newMenu.setPrice(m.getPrice());
+                newMenu.setRestaurant(newRestaurant);
 
-//                newRestaurant.getMenus().add(newMenu);
-//            }
+                newRestaurant.getMenus().add(newMenu);
+
         }
         return restaurantRepository.save(newRestaurant);
     }
