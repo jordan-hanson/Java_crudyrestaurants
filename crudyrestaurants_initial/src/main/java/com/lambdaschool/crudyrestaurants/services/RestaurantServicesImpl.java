@@ -22,11 +22,6 @@ public class RestaurantServicesImpl implements RestaurantServices{
     @Autowired
     private RestaurantRepository restaurantRepository;
 
-    @Transactional
-    @Override
-    public Restaurant save(Restaurant restaurant) {
-        return restaurantRepository.save(restaurant);
-    }
 
     @Override
     public List<Restaurant> findAllRestaurants() {
@@ -54,5 +49,29 @@ public class RestaurantServicesImpl implements RestaurantServices{
     @Override
     public List<Restaurant> findRestaurantByDish(String subdish) {
         return restaurantRepository.findByMenus_dishContainingIgnoringCase(subdish);
+    }
+
+    @Transactional
+    @Override
+    public Restaurant save(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
+    }
+
+    @Transactional
+    @Override
+    public void delete(long id) {
+
+    }
+
+    @Transactional
+    @Override
+    public Restaurant update(Restaurant restaurant, long id) {
+        return null;
+    }
+
+    @Transactional
+    @Override
+    public void deleteAll() {
+
     }
 }
