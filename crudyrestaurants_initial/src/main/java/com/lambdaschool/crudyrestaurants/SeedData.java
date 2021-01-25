@@ -59,6 +59,10 @@ public class SeedData implements CommandLineRunner
     @Override
     public void run(String[] args)
     {
+//        These are connected so it deltes the restaurants its menus attached to it. casdcadetypeAll in the mapping.
+//        then delete all the payment services also individually .
+        restaurantServices.deleteAll();
+        paymentServices.deleteAll();
         Payment pay1 = new Payment("Cash");
         pay1 = paymentServices.save(pay1);
         Payment pay2 = new Payment("Credit Card");

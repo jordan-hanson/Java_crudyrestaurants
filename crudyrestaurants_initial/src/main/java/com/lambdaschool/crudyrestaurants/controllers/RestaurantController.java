@@ -69,7 +69,7 @@ public class RestaurantController
     @DeleteMapping(value = "/restaurant/{restid}")
     public ResponseEntity<?> deleteRestaurantById(@PathVariable long restid){
         restaurantServices.delete(restid);
-        return new ResponseEntity<>(HttpStatus.OK)
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // It needs a request body after the value to give an object that contains the information
@@ -96,6 +96,8 @@ public class RestaurantController
     // Using produces a json object the user can see it cannot be secure to show the user all the information on the
     //updated data object including the Id on the object it updated it with.
     @PostMapping(value = "/restaurant", consumes= "application/json", produces = "application/json")
+//        @PostMapping(value = "/restaurant/", consumes= "application/json", produces = "application/json") doesn't work
+//    with my post request it does a header url with restaurant{id} instead of demo /restaurant/id
     public ResponseEntity<?> replaceRestaurant(@Valid @RequestBody Restaurant newRestaurant){
         newRestaurant.setRestaurantid(0);
         newRestaurant = restaurantServices.save(newRestaurant);
