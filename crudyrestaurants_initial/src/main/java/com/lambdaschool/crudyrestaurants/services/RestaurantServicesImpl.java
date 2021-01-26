@@ -158,16 +158,16 @@ public class RestaurantServicesImpl implements RestaurantServices{
             updateRestaurant.getMenus().clear();
 //        Because menus don't exist without a restaurant it is different tehn the payments that are
 //        already in a made table.
-            for (Menu m : restaurant.getMenus()) {
-//            Menu newMenu = new Menu(){
-//                newMenu.setDish(m.getDish());
-//                newMenu.setPrice(m.setPrice());
-//                newMenu.setRestaurant(updateRestaurant);
-//
-//                updateRestaurant.getMenus().add(newMenu);
-//            }
+            for (Menu m : restaurant.getMenus()){
+                Menu newMenu = new Menu();
+                newMenu.setDish(m.getDish());
+                newMenu.setPrice(m.getPrice());
+                newMenu.setRestaurant(updateRestaurant);
+
+                updateRestaurant.getMenus().add(newMenu);
+
             }
-        }
+            }
         return restaurantRepository.save(updateRestaurant);
     }
 
